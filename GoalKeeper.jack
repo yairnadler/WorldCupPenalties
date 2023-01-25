@@ -1,0 +1,209 @@
+/** Implements a graphical goalkeeper */
+
+class GoalKeeper {
+
+    field int x, y; // position of the goalkeeper
+    field int size; // size of the goalkeeper
+
+    constructor GoalKeeper new(int Ax, int Ay, int Asize) {
+        let x = Ax;
+        let y = Ay;
+        let size = Asize;
+        do draw();
+        return this;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void draw() {
+        // goalkeeper's body
+        do Screen.setColor(true);
+        do Screen.drawLine(x, y - (size*10), x, y);
+
+        // goalkeeper's head
+        do Screen.setColor(true);
+        do Screen.drawCircle(x, y - (size*10) - 9, 8);
+
+        // goalkeeper's arms
+        do Screen.setColor(true);
+        do Screen.drawLine(x, y - (size*8) + 5, x - (size*5), y - (size*8) - 5); // left arm
+        do Screen.drawLine(x, y - (size*8) + 5, x + (size*5), y - (size*8) - 5); // right arm
+
+        // goalkeeper's legs
+        do Screen.setColor(true);
+        do Screen.drawLine(x, y, x - (size*2), y + (size*5)); // left leg
+        do Screen.drawLine(x, y, x + (size*2), y + (size*5)); // right leg
+        return;
+    }
+
+    method void erase(){
+        // goalkeeper's body
+        do Screen.setColor(false);
+        do Screen.drawLine(x, y - (size*10), x, y);
+
+        // goalkeeper's head
+        do Screen.setColor(false);
+        do Screen.drawCircle(x, y - (size*10) - 9, 8);
+
+        // goalkeeper's arms
+        do Screen.setColor(false);
+        do Screen.drawLine(x, y - (size*8) + 5, x - (size*5), y - (size*8) - 5); // left arm
+        do Screen.drawLine(x, y - (size*8) + 5, x + (size*5), y - (size*8) - 5); // right arm
+
+        // goalkeeper's legs
+        do Screen.setColor(false);
+        do Screen.drawLine(x, y, x - (size*2), y + (size*5)); // left leg
+        do Screen.drawLine(x, y, x + (size*2), y + (size*5)); // right leg
+        return;
+    }
+
+    method void BottomLeftDive(){
+        // goalkeeper's body
+        do Screen.setColor(true);
+        do Screen.drawLine(15 + (size*8), 130, 15 + (size*8)*2, 130);
+
+        // goalkeeper's head
+        do Screen.setColor(true);
+        do Screen.drawCircle(15 + (size*6), 130, 8);
+
+        // goalkeeper's arms
+        do Screen.setColor(true);
+        do Screen.drawLine(15, 140, 15 + (size*5), 135);
+        do Screen.drawLine(15 + (size*8) + 5, 130, 15 + (size*8), 130 - (size*5));
+
+        // goalkeeper's legs
+        do Screen.setColor(true);
+        do Screen.drawLine(15 + (size*8)*2, 130, 15 + (size*8)*2 + (size*6), 130 - (size*2));
+        do Screen.drawLine(15 + (size*8)*2, 130, 15 + (size*8)*2 + (size*6), 130 - size);
+        return;
+    }
+
+    method void CenterLeftDive(){
+        // goalkeeper's body
+        do Screen.setColor(true);
+        do Screen.drawLine(15 + (size*4), 100, 15 + (size*4)*2, 130);
+
+        // goalkeeper's head
+        do Screen.setColor(true);
+        do Screen.drawCircle(15 + (size*4), 96, 8);
+
+        // goalkeeper's arms
+        do Screen.setColor(true);
+        do Screen.drawLine(15 + (size*4), 100, 10, 70);
+        do Screen.drawLine(15 + (size*6), 100, 15 + (size*4)*2, 80);
+
+        // goalkeeper's legs
+        do Screen.setColor(true);
+        do Screen.drawLine(15 + (size*4)*2, 130, 15 + (size*4)*2, 130 + (size*6));
+        do Screen.drawLine(15 + (size*4)*2, 130, 15 + (size*4)*2 + (size*6), 130);
+        return;
+    }
+
+    method void TopLeftDive(){
+        // goalkeeper's body
+        do Screen.setColor(true);
+        do Screen.drawLine(30 + (size*6), 40, 15 + (size*6)*3, 60);
+
+        // goalkeeper's head
+        do Screen.setColor(true);
+        do Screen.drawCircle(30 + (size*6), 36, 8);
+
+        // goalkeeper's arms
+        do Screen.setColor(true);
+        do Screen.drawLine(30 + (size*6), 40, 20, 20);
+        do Screen.drawLine(30 + (size*6), 40, 30 + (size*3), 70);
+
+        // goalkeeper's legs
+        do Screen.setColor(true);
+        do Screen.drawLine(15 + (size*6)*3, 60, 15 + (size*6)*4, 60);
+        do Screen.drawLine(15 + (size*6)*3, 60, 15 + (size*6)*4, 75);
+        return;
+    }
+
+    method void BottomRightDive(){
+        // goalkeeper's body
+        do Screen.setColor(true);
+        do Screen.drawLine(495 - (size*20), 120, 495 - (size*8), 120);
+
+        // goalkeeper's head
+        do Screen.setColor(true);
+        do Screen.drawCircle(495 - (size*6), 120, 8);
+
+        // goalkeeper's arms
+        do Screen.setColor(true);
+        do Screen.drawLine(495 - (size*10), 120, 495 - (size*10) + (size*2), 120 - (size*5));
+        do Screen.drawLine(495 - (size*10), 120, 495, 130);
+
+        // goalkeeper's legs
+        do Screen.setColor(true);
+        do Screen.drawLine(495 - (size*20), 120, 495 - (size*20) - (size*6), 120 - (size*2));
+        do Screen.drawLine(495 - (size*20), 120, 495 - (size*20) - (size*6), 120 - size);
+        return;
+    }
+
+    method void CenterRightDive(){
+        // goalkeeper's body
+        do Screen.setColor(true);
+        do Screen.drawLine(495 - (size*15), 120, 495 - (size*8), 80);
+
+        // goalkeeper's head
+        do Screen.setColor(true);
+        do Screen.drawCircle(495 - (size*6), 76, 8);
+
+        // goalkeeper's arms
+        do Screen.setColor(true);
+        do Screen.drawLine(495 - (size*10), 90, 500, 65);
+        do Screen.drawLine(495 - (size*10), 90, 500, 70);
+
+        // goalkeeper's legs
+        do Screen.setColor(true);
+        do Screen.drawLine(495 - (size*23), 125, 495 - (size*15), 120);
+        do Screen.drawLine(495 - (size*20), 140, 495 - (size*15), 120);
+        return;
+    }
+
+    method void TopRightDive(){
+        // goalkeeper's body
+        do Screen.setColor(true);
+        do Screen.drawLine(495 - (size*20), 60, 495 - (size*8), 40);
+
+        // goalkeeper's head
+        do Screen.setColor(true);
+        do Screen.drawCircle(495 - (size*6), 36, 8);
+
+        // goalkeeper's arms
+        do Screen.setColor(true);
+        do Screen.drawLine(495 - (size*10), 42, 485, 15);
+        do Screen.drawLine(495 - (size*10), 42, 500, 25);
+
+        // goalkeeper's legs
+        do Screen.setColor(true);
+        do Screen.drawLine(495 - (size*30), 60, 495 - (size*20), 60);
+        do Screen.drawLine(495 - (size*27), 70, 495 - (size*20), 60);
+        return;
+    }
+
+    method void TopCenterDive(){
+        // goalkeeper's body
+        do Screen.setColor(true);
+        do Screen.drawLine(x, 40, x, 80);
+
+        // goalkeeper's head
+        do Screen.setColor(true);
+        do Screen.drawCircle(x, 31, 8);
+
+        // goalkeeper's arms
+        do Screen.setColor(true);
+        do Screen.drawLine(x, 45, x - (size*5), 35 - (size*8)); // left arm
+        do Screen.drawLine(x, 45, x, 10); // right arm
+
+        // goalkeeper's legs
+        do Screen.setColor(true);
+        do Screen.drawLine(x, 80, x - (size*2), 80 + (size*5)); // left leg
+        do Screen.drawLine(x, 80, x + (size*2), 80 + (size*5)); // right leg
+        return;
+    }
+}

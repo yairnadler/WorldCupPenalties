@@ -1,0 +1,164 @@
+
+/** Implements a Start Page where you choose your team*/
+class StartPage{
+
+    field String s1;
+    field String s2;
+    field String s3;
+    field String s4;
+    field String s5;
+    field String s6;
+    field String s7;
+    field String s8;
+    field String s9;
+    field String s10;
+
+    constructor StartPage new(){
+        let s1 = "THIS GAME IS MADE FOR ARGENTINA'S FOOTBALL FANS";
+        let s2 = "SO IF THAT'S NOT YOU, YOU CAN LEAVE NOW";
+        let s3 = "(PRESS SPACE TO CONTINUE OR ANY OTHER KEY TO QUIT)";
+        let s4 = "THE SCORE IS 3-3, IT HAS COME DOWN TO PENALTIES";
+        let s5 = "IN THE 2022 WORLD CUP FINAL";
+        let s6 = "THE WHOLE WORLD IS WATCHING";
+        let s7 = "IT IS UP TO YOU TO BRING THE GLORY BACK TO ARGENTINA";
+        let s8 = "SCORE AT LEAST 3 OUT OF 5 SHOTS AND TAKE THE CUP HOME";
+        let s9 = "CAN YOU DO IT?";
+        let s10 = "(PRESS ANY KEY TO START)";
+        do Start1();
+        return this;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void Start1(){
+        var char key, temp;
+        var int i, len;
+        let key = 0;
+        let i = 0;
+        let len = s1.length();
+        do Output.moveCursor(0,0);
+        while (i < len){
+            let temp = s1.charAt(i);
+            do Output.printChar(temp);
+            let i = i + 1;
+            do Sys.wait(50);
+        }
+        let i = 0;
+        let len = s2.length();
+        do Output.moveCursor(1,0);
+        while (i < s2.length()){
+            let temp = s2.charAt(i);
+            do Output.printChar(temp);
+            let i = i + 1;
+            do Sys.wait(50);
+        }
+        do Output.moveCursor(2,0);
+        do Output.printString(s3);
+        let key = Keyboard.keyPressed();
+        while(key = 0){
+            let key = Keyboard.keyPressed();
+            if (key = 32) {
+                do Start2();
+                return;
+            }
+        }
+        do Sys.halt();
+        return;
+    }
+
+    method void Start2(){
+        var char key, temp;
+        var int i, len;
+        let key = 0;
+        let len = s4.length();
+        let i = 0;
+        do Screen.clearScreen();
+        do Output.moveCursor(0,0);
+        while (i < len){
+            let temp = s4.charAt(i);
+            do Output.printChar(temp);
+            let i = i + 1;
+            do Sys.wait(50);
+        }
+        let i = 0;
+        let len = s5.length();
+        do Output.moveCursor(1,0);
+        while (i < len){
+            let temp = s5.charAt(i);
+            do Output.printChar(temp);
+            let i = i + 1;
+            do Sys.wait(50);
+        }
+        let i = 0;
+        let len = s6.length();
+        do Output.moveCursor(2,0);
+        while (i < len){
+            let temp = s6.charAt(i);
+            do Output.printChar(temp);
+            let i = i + 1;
+            do Sys.wait(50);
+        }
+        let i = 0;
+        let len = s7.length();
+        do Output.moveCursor(3,0);
+        while (i < len){
+            let temp = s7.charAt(i);
+            do Output.printChar(temp);
+            let i = i + 1;
+            do Sys.wait(50);
+        }
+        let i = 0;
+        let len = s8.length();
+        do Output.moveCursor(4,0);
+        while (i < len){
+            let temp = s8.charAt(i);
+            do Output.printChar(temp);
+            let i = i + 1;
+            do Sys.wait(50);
+        }
+        let i = 0;
+        let len = s9.length();
+        do Output.moveCursor(5,0);
+        while (i < len){
+            let temp = s9.charAt(i);
+            do Output.printChar(temp);
+            let i = i + 1;
+            do Sys.wait(50);
+        }
+        do Output.moveCursor(6,0);
+        do Output.printString(s10);
+        while(key = 0){
+            let key = Keyboard.keyPressed();
+        }
+        do Screen.clearScreen();
+        return;
+    }
+
+    method void HowToPlay(){
+        var char key;
+        do Output.moveCursor(0,25);
+        do Output.printString("HOW TO PLAY");
+        do Output.moveCursor(1,0);
+        do Output.printString("THE GOAL IS DIVIDED INTO 9 AREAS:");
+        do Output.moveCursor(2,0);
+        do Output.printString("THE BOTTOM: 1,2,3 THE MIDDLE: 4,5,6 THE TOP: 7,8,9");
+        do Output.moveCursor(3,0);
+        do Output.printString("USE THE NUMPAD TO AIM AND SHOOT TOWARDS THE GOAL");
+        do Output.moveCursor(4,0);
+        do Output.printString("THE GOALKEEPER WILL MOVE RANDOMLY");
+        do Output.moveCursor(5,0);
+        do Output.printString("YOU HAVE 5 SHOTS TO SCORE AT LEAST 3 GOALS");
+        do Output.moveCursor(6,0);
+        do Output.printString("(PRESS Q TO QUIT AT ANY TIME)");
+        do Output.moveCursor(7,0);
+        do Output.printString("PRESS ANY KEY TO CONTINUE");
+        while(key = 0){
+            let key = Keyboard.keyPressed();
+        }
+        do Screen.clearScreen();
+        return;
+    }
+}

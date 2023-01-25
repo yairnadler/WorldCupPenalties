@@ -1,0 +1,185 @@
+/** Implements a graphical soccer ball */
+
+class Ball{
+
+    field int x , y; // the ball's position on the field
+    field int radius; // the ball's radius
+
+    constructor Ball new(int Ax, int Ay, int Ar){
+        let x = Ax;
+        let y = Ay;
+        let radius = Ar;
+        do draw();
+        return this;
+    }
+
+    /** Disposes this ball. */
+   method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+   }
+
+    /** Draws the ball on the screen */
+    method void draw(){
+        do Screen.setColor(true);
+        do Screen.drawCircle(x, y, radius);
+        return;
+    }
+
+    /** Erases the ball from the screen. */
+    method void erase() {
+        do Screen.setColor(false);
+        do Screen.drawCircle(x, y, radius);
+        return;
+    }
+
+    method int TopLeftCorner(){
+        var int originX, originY;
+        var double move;
+        let originX = x;
+        let originY = y;
+        let move = 1;
+        while(y > 20){
+            do Screen.setColor(false);
+            do Screen.drawCircle(x, y, radius);
+            let x = x - (move*4);
+            let y = y - (move*4);
+            do Screen.setColor(true);
+            do Screen.drawCircle(x, y, radius);
+            do Sys.wait(5);
+        }
+        do Sys.wait(1000);
+        return 1;
+    }
+
+    method int LeftSide(){
+        var double move;
+        let move = 1;
+        while(x > 20){
+            do Screen.setColor(false);
+            do Screen.drawCircle(x, y, radius);
+            let x = x - (move*4);
+            let y = y - (move*3);
+            do Screen.setColor(true);
+            do Screen.drawCircle(x, y, radius);
+            do Sys.wait(5);
+        }
+        do Sys.wait(1000);
+        return 2;
+    }
+
+    method int BottomLeftCorner(){
+        var int originX, originY;
+        var double move;
+        let originX = x;
+        let originY = y;
+        let move = 1;
+        while(x > 20){
+            do Screen.setColor(false);
+            do Screen.drawCircle(x, y, radius);
+            let x = x - (move*4);
+            let y = y - (move*2);
+            do Screen.setColor(true);
+            do Screen.drawCircle(x, y, radius);
+            do Sys.wait(5);
+        }
+        do Sys.wait(1000);
+        return 3;
+    }
+
+    method int TopRightCorner(){
+        var double move;
+        let move = 1;
+        while(y > 20){
+            do Screen.setColor(false);
+            do Screen.drawCircle(x, y, radius);
+            let x = x + (move*4);
+            let y = y - (move*4);
+            do Screen.setColor(true);
+            do Screen.drawCircle(x, y, radius);
+            do Sys.wait(5);
+        }
+        do Sys.wait(1000);
+        return 4;
+    }
+
+    method int RightSide(){
+        var double move;
+        let move = 1;
+        while(x < 490){
+            do Screen.setColor(false);
+            do Screen.drawCircle(x, y, radius);
+            let x = x + (move*4);
+            let y = y - (move*3);
+            do Screen.setColor(true);
+            do Screen.drawCircle(x, y, radius);
+            do Sys.wait(5);
+        }
+        do Sys.wait(1000);
+        return 5;
+    }
+
+    method int BottomRightCorner(){
+        var double move;
+        let move = 1;
+        while(x < 490){
+            do Screen.setColor(false);
+            do Screen.drawCircle(x, y, radius);
+            let x = x + (move*4);
+            let y = y - (move*2);
+            do Screen.setColor(true);
+            do Screen.drawCircle(x, y, radius);
+            do Sys.wait(5);
+        }
+        do Sys.wait(1000);
+        return 6;
+    }
+
+    method int TopCenter(){
+        var double move;
+        let move = 1;
+        while(y > 20){
+            do Screen.setColor(false);
+            do Screen.drawCircle(x, y, radius);
+            let x = x;
+            let y = y - (move*4);
+            do Screen.setColor(true);
+            do Screen.drawCircle(x, y, radius);
+            do Sys.wait(5);
+        }
+        do Sys.wait(1000);
+        return 7;
+    }
+
+    method int Center(){
+        var double move;
+        let move = 1;
+        while(y > 100){
+            do Screen.setColor(false);
+            do Screen.drawCircle(x, y, radius);
+            let x = x;
+            let y = y - (move*4);
+            do Screen.setColor(true);
+            do Screen.drawCircle(x, y, radius);
+            do Sys.wait(5);
+        }
+        do Sys.wait(1000);
+        return 8;
+    }
+
+    method int BottomCenter(){
+        var double move;
+        let move = 1;
+        while(y > 150){
+            do Screen.setColor(false);
+            do Screen.drawCircle(x, y, radius);
+            let x = x;
+            let y = y - (move*4);
+            do Screen.setColor(true);
+            do Screen.drawCircle(x, y, radius);
+            do Sys.wait(5);
+        }
+        do Sys.wait(1000);
+        return 9;
+    }
+}

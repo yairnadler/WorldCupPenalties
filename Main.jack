@@ -1,0 +1,24 @@
+class Main {
+    function void main() {
+        var StartPage s;
+        var PenaltyShootOut game;
+        var boolean win;
+        
+        let s = StartPage.new();
+        do s.HowToPlay();
+        do s.dispose();
+
+        let win = false;
+        let game = PenaltyShootOut.new();
+        let win = game.Run();
+        do Output.moveCursor(4, 25);
+        if (win) {
+            do Output.printString("You win!   =)");
+        } 
+        else {
+            do Output.printString("You lose!  =(");
+        }
+        do game.dispose();
+        return;
+    }
+}

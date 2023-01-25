@@ -1,0 +1,183 @@
+
+class PenaltyShootOut{
+
+    field Random rand;
+    field Ball ball;
+    field Goal goal;
+    field Score scores;
+    field GoalKeeper gk;
+    field int aim, dir;
+
+    constructor PenaltyShootOut new(){
+        let ball = Ball.new(250, 250, 5);
+        let goal = Goal.new(0, 0);
+        let scores = Score.new(0, 0);
+        let gk = GoalKeeper.new(250, 150, 4);
+        let aim = 0; // initially the shot isn't aimed anywhere
+        let dir = 0; // initially the GK isn't jumping in any direction
+        let rand = Random.new(10);
+        return this;
+    }
+
+    /** Disposes this game. */
+    method void dispose() {
+        do ball.dispose();
+        do goal.dispose();
+        do gk.dispose();
+        do scores.dispose();
+        do Memory.deAlloc(this);
+        return;
+   }
+
+   method void Shot(){
+        if (aim = 1) { do ball.BottomLeftCorner(); } 
+        if (aim = 2) { do ball.BottomCenter(); }
+        if (aim = 3) { do ball.BottomRightCorner(); }
+        if (aim = 4) { do ball.LeftSide(); }
+        if (aim = 5) { do ball.Center(); }
+        if (aim = 6) { do ball.RightSide(); }
+        if (aim = 7) { do ball.TopLeftCorner(); }
+        if (aim = 8) { do ball.TopCenter(); }
+        if (aim = 9) { do ball.TopRightCorner(); }
+        return;
+   }
+
+   method void Jump(){
+        if (dir = 1) { do gk.BottomLeftDive(); }
+        if (dir = 2) { do gk.draw(); }
+        if (dir = 3) { do gk.BottomRightDive(); }
+        if (dir = 4) { do gk.CenterLeftDive(); }
+        if (dir = 5) { do gk.draw(); }
+        if (dir = 6) { do gk.CenterRightDive(); }
+        if (dir = 7) { do gk.TopLeftDive(); }
+        if (dir = 8) { do gk.TopCenterDive(); }
+        if (dir = 9) { do gk.TopRightDive(); }
+
+        return;
+   }
+
+   method void Reset(){
+        do ball.dispose();
+        do gk.dispose();
+        do Screen.setColor(false);
+        do Screen.drawRectangle(8, 8, 500, 180);
+        let ball = Ball.new(250, 250, 5);
+        let gk = GoalKeeper.new(250, 150, 4);
+        return;
+   }
+
+   method boolean Run(){
+        var char key;
+        var boolean exit, win;
+        var int r, total;
+
+        let total = 0;
+        let exit = false;
+
+        while ((~(total = 5)) & (~(exit))){
+            // generate a random number between 1 and 9
+            let r = rand.randRange(8);
+            let dir = r + 1;
+            // take a shot
+            let key = Keyboard.keyPressed();
+            if (key = 81) {let exit = true;} // q key
+            if (key = 49) {  // numpad 1
+                let aim = 1;
+                do gk.erase();
+                do Jump();
+                do Shot();
+                do Reset();
+                if (aim = dir) {do scores.updateScore2();}
+                else {do scores.updateScore1();}
+                let key = 0;
+            }
+            if (key = 50) { // numpad 2
+                let aim = 2;
+                do gk.erase();
+                do Jump();
+                do Shot();
+                do Reset();
+                if (aim = dir) {do scores.updateScore2();}
+                else {do scores.updateScore1();}
+                let key = 0;
+            } 
+            if (key = 51) { // numpad 3
+                let aim = 3;
+                do gk.erase();
+                do Jump();
+                do Shot();
+                do Reset();
+                if (aim = dir) {do scores.updateScore2();}
+                else {do scores.updateScore1();}
+                let key = 0;
+            } 
+            if (key = 52) { // numpad 4
+                let aim = 4;
+                do gk.erase();
+                do Jump();
+                do Shot();
+                do Reset();
+                if (aim = dir) {do scores.updateScore2();}
+                else {do scores.updateScore1();}
+                let key = 0;
+            } 
+            if (key = 53) { // numpad 5
+                let aim = 5;
+                do gk.erase();
+                do Jump();
+                do Shot();
+                do Reset();
+                if (aim = dir) {do scores.updateScore2();}
+                else {do scores.updateScore1();}
+                let key = 0;
+            } 
+            if (key = 54) { // numpad 6
+                let aim = 6;
+                do gk.erase();
+                do Jump();
+                do Shot();
+                do Reset();
+                if (aim = dir) {do scores.updateScore2();}
+                else {do scores.updateScore1();}
+                let key = 0;
+            } 
+            if (key = 55) { // numpad 7
+                let aim = 7;
+                do gk.erase();
+                do Jump();
+                do Shot();
+                do Reset();
+                if (aim = dir) {do scores.updateScore2();}
+                else {do scores.updateScore1();}
+                let key = 0;
+            } 
+            if (key = 56) { // numpad 8
+                let aim = 8;
+                do gk.erase();
+                do Jump();
+                do Shot();
+                do Reset();
+                if (aim = dir) {do scores.updateScore2();}
+                else {do scores.updateScore1();}
+                let key = 0;
+            } 
+            if (key = 57) { // numpad 9
+                let aim = 9;
+                do gk.erase();
+                do Jump();
+                do Shot();
+                do Reset();
+                if (aim = dir) {do scores.updateScore2();}
+                else {do scores.updateScore1();}
+                let key = 0;
+            } 
+
+            let total = scores.getScore1() + scores.getScore2();
+        }
+
+        if (scores.getScore1() > scores.getScore2()) {let win = true;}
+        else {let win = false;}
+        
+        return win;
+   }
+}

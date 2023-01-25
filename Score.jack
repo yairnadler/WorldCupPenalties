@@ -1,0 +1,53 @@
+
+/** Implements the two world cup finalists Argentina and France */
+
+class Score{
+   
+    field int score1, score2;
+
+    /** constructs new */
+    constructor Score new(int s1, int s2){
+        let score1 = s1;
+        let score2 = s2;
+        do draw();
+        return this;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void draw(){
+        do Output.moveCursor(22, 0);
+        do Output.printString("ARGENTINA: ");
+        do Output.printInt(score1);
+        do Output.moveCursor(22, 55);
+        do Output.printString("FRANCE: ");
+        do Output.printInt(score2);
+        return;
+    }
+
+    method int getScore1(){
+        return score1;
+    }
+
+    method int getScore2(){
+        return score2;
+    }
+
+    method void updateScore1(){
+        let score1 = score1 + 1;
+        do Output.moveCursor(22, 11);
+        do Output.printInt(score1);
+        return;
+    }
+
+    method void updateScore2(){
+        let score2 = score2 + 1;
+        do Output.moveCursor(22, 63);
+        do Output.printInt(score2);
+        return;
+    }
+
+}
